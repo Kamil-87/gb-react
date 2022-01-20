@@ -1,12 +1,10 @@
 import './App.css';
-import {Message} from "./components";
-
-const text = 'Hello GB!'
+import {MessageList} from "./components";
 
 function App() {
   return (
     <div className="App">
-        <Message text={text}/>
+      <MessageList />
     </div>
   );
 }
