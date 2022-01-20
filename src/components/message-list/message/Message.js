@@ -1,15 +1,12 @@
 import React from "react";
 import styles from './Message.module.css'
 
-export const Message = message => {
-  const {author, text} = message
-
-  console.log('props', message)
+export const Message = props => {
+  const {author, text} = props.message
 
   return (
-    <div className={styles.Message}>
-      <p>{author}</p>
-      <p>{text}</p>
-    </div>
+    <li className={styles.Message}>
+      {author} - {text}
+    </li>
   )
 }

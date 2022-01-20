@@ -1,7 +1,8 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react"
 
 import styles from './MessageList.module.css'
-// import {Message} from "./message";
+import {Message} from './message'
+import {NewMessage} from "./new-message/NewMessage"
 
 export const MessageList = () => {
   const [messageList, setMessages] = useState([])
@@ -18,9 +19,9 @@ export const MessageList = () => {
     setMessages(newMessageList)
   }
 
-  const resetForm = () => {
+  const resetForm = useCallback(() => {
     setValue('')
-  }
+  }, [])
 
   const onSubmitMessage = event => {
     event.preventDefault()
@@ -28,9 +29,9 @@ export const MessageList = () => {
     resetForm()
   }
 
-  const onChangeMessageInput = event => {
+  const onChangeMessageInput = useCallback(event => {
     setValue(event.target.value)
-  }
+  }, [])
 
   useEffect(() => {
     if (messageList.length === 0) {
@@ -53,28 +54,24 @@ export const MessageList = () => {
 
   return (
     <div>
-      <form
-        className={styles.Form}
+      <NewMessage
         onSubmit={onSubmitMessage}
-      >
-        <input
-          placeholder='Написать сообщение...'
-          type="text"
-          onChange={onChangeMessageInput}
-          value={value}
-        />
-        <button>Отправить</button>
-      </form>
+        onChangeInput={onChangeMessageInput}
+        value={value}
+      />
 
-      <div className={styles.MessageList}>
+      <ul className={styles.MessageList}>
         {
-          messageList.map((message, index) => (
-            <p key={index}>
-              {message.author} - {message.text}
-            </p>
-          ))
+          messageList.map((message, index) => {
+            return (
+              <Message
+                key={index}
+                message={message}
+              />
+            )
+          })
         }
-      </div>
+      </ul>
 
     </div>
   )
