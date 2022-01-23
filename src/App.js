@@ -1,10 +1,10 @@
 import './App.css';
-import {MessageList} from "./components";
+import {Chat} from "./views/Chat";
 
 function App() {
   return (
     <div className="App">
-      <MessageList />
+      <Chat />
     </div>
   );
 }
