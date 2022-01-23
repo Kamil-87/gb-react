@@ -1,78 +1,39 @@
-import {useCallback, useEffect, useState} from "react"
-
-import styles from './MessageList.module.css'
+import propTypes from 'prop-types'
 import {Message} from './message'
-import {NewMessage} from "./new-message/NewMessage"
+import {List} from "@mui/material"
 
-export const MessageList = () => {
-  const [messageList, setMessages] = useState([])
-  const [value, setValue] = useState('')
-
-  const sendMessage = (author, text) => {
-    const newMessageList = [...messageList]
-    const newMessage = {
-      author,
-      text
-    }
-
-    newMessageList.push(newMessage)
-    setMessages(newMessageList)
-  }
-
-  const resetForm = useCallback(() => {
-    setValue('')
-  }, [])
-
-  const onSubmitMessage = event => {
-    event.preventDefault()
-    sendMessage('user', value)
-    resetForm()
-  }
-
-  const onChangeMessageInput = useCallback(event => {
-    setValue(event.target.value)
-  }, [])
-
-  useEffect(() => {
-    if (messageList.length === 0) {
-      return
-    }
-
-    const tail = messageList[messageList.length - 1]
-    if (tail.author === 'bot') {
-      return
-    }
-
-    if (tail.author === 'user') {
-      setTimeout(() => {
-       sendMessage('bot', 'Не приставай ко мне')
-      }, 1500)
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [messageList])
-
+export const MessageList = props => {
   return (
-    <div>
-      <NewMessage
-        onSubmit={onSubmitMessage}
-        onChangeInput={onChangeMessageInput}
-        value={value}
-      />
-
-      <ul className={styles.MessageList}>
+    <List
+      sx={{
+        width: '100%',
+        maxWidth: 360
+      }}
+    >
         {
-          messageList.map((message, index) => {
+          props.messageList.map(message => {
             return (
               <Message
-                key={index}
+                key={message.id}
                 message={message}
               />
             )
           })
         }
-      </ul>
+    </List>
+  )
+}
 
-    </div>
+MessageList.defaultProps = {
+  messageList: []
+}
+
+MessageList.propTypes = {
+  messageList: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.string,
+      author: propTypes.string,
+      text: propTypes.string
+    })
   )
 }
