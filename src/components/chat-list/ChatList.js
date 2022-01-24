@@ -6,13 +6,12 @@ export const ChatList = () => {
   const [selectedIndex, setSelectedIndex] = useState(1)
 
   const chats = [
-    {id: '1', label: 'chat 1'},
-    {id: '2', label: 'chat 2'}
+    {chatId: '1', label: 'chat 1'},
+    {chatId: '2', label: 'chat 2'}
   ]
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index)
-    console.log('index', index)
   }
 
   return (
@@ -25,10 +24,11 @@ export const ChatList = () => {
         chats.map((chat) => {
           return (
             <ChatItem
-              key={chat.id}
-              selected={selectedIndex === chat.id}
-              onClick={(event) => handleListItemClick(event, chat.id)}
-              label={chat.label}
+              key={chat.chatId}
+              selected={selectedIndex === chat.chatId}
+              onClick={(event) => handleListItemClick(event, chat.chatId)}
+              id={chat.chatId}
+              title={chat.label}
             />
           )
         })
