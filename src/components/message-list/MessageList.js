@@ -1,11 +1,10 @@
 import propTypes from 'prop-types'
 import {Message} from './message'
 import {List} from "@mui/material"
-import {Route, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 export const MessageList = props => {
   console.log('useParams', useParams())
-  const { chatId } = useParams();
 
   return (
     <List
@@ -14,7 +13,6 @@ export const MessageList = props => {
         maxWidth: 360
       }}
     >
-      <Route path={'/chats/:chatId}'}>
         {
           props.messageList.map(message => {
             return (
@@ -25,7 +23,6 @@ export const MessageList = props => {
             )
           })
         }
-      </Route>
     </List>
   )
 }

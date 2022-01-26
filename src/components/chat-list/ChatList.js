@@ -1,13 +1,15 @@
 import React, {useState} from "react"
 import {ChatItem} from './chat-item'
 import {List} from "@mui/material"
+import {CHATS} from "../../mocks/chats";
 
 export const ChatList = () => {
   const [selectedIndex, setSelectedIndex] = useState(1)
 
   const chats = [
-    {chatId: '1', label: 'chat 1'},
-    {chatId: '2', label: 'chat 2'}
+    {id: '1', label: 'chat 1'},
+    {id: '2', label: 'chat 2'},
+    ...CHATS
   ]
 
   const handleListItemClick = (event, index) => {
@@ -21,14 +23,14 @@ export const ChatList = () => {
       sx={{width: '100%', height: '100%', bgcolor: 'rgb(5, 30, 52)'}}
     >
       {
-        chats.map((chat) => {
+        chats.map(({id, label}) => {
           return (
             <ChatItem
-              key={chat.chatId}
-              selected={selectedIndex === chat.chatId}
-              onClick={(event) => handleListItemClick(event, chat.chatId)}
-              id={chat.chatId}
-              title={chat.label}
+              key={id}
+              selected={selectedIndex === id}
+              onClick={(event) => handleListItemClick(event, id)}
+              id={id}
+              title={label}
             />
           )
         })

@@ -5,7 +5,7 @@ import {ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import {AccountBox} from "@mui/icons-material";
 
 export const ChatItem = (props) => {
-  const {selected, onClick, chatId, title} = props
+  const {selected, onClick, id, title} = props
 
   return (
       <ListItemButton
@@ -20,7 +20,7 @@ export const ChatItem = (props) => {
           color="inherit"
           primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium', color: 'white' }}
         >
-          <Link to={`/chats/${chatId}`} style={{color: 'white'}}>{title}</Link>
+          <Link to={`/chats/${id}`} style={{color: 'white'}}>{title}</Link>
         </ListItemText>
       </ListItemButton>
   )

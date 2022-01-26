@@ -5,11 +5,16 @@ import {ThemeProvider, createTheme} from '@mui/material/styles';
 const navMenu = [
   {
     id: 1,
+    path: '/',
+    title: 'Главная',
+  },
+  {
+    id: 2,
     path: '/profile',
     title: 'Профиль',
   },
   {
-    id: 2,
+    id: 3,
     path: '/chats',
     title: 'Чаты',
   }
@@ -24,7 +29,6 @@ export const Layout = ({children}) => {
         />
 
         <ThemeProvider
-          sx={{ mt: 4, mb: 2 }}
           theme={createTheme({
             palette: {
               mode: 'dark',
