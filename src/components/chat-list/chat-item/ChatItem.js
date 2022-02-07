@@ -1,27 +1,30 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-import {ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
-import {AccountBox} from "@mui/icons-material";
+import {ListItemButton, ListItemText} from "@mui/material"
+import {Delete} from "@mui/icons-material"
+import Button from "@mui/material/Button"
 
-export const ChatItem = (props) => {
-  const {selected, onClick, id, title} = props
-
+export const ChatItem = ({onClick, id, label}) => {
   return (
+    <div style={{display: "flex", alignItems: "center"}}>
       <ListItemButton
-        selected={selected}
-        onClick={onClick}
+        component={Link}
+        to={`/chats/${id}`}
         sx={{ py: 0, minHeight: 32, color: 'rgba(255,255,255,.8)' }}
       >
-        <ListItemIcon>
-          <AccountBox color="inherit"/>
-        </ListItemIcon>
         <ListItemText
           color="inherit"
           primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium', color: 'white' }}
         >
-          <Link to={`/chats/${id}`} style={{color: 'white'}}>{title}</Link>
+         {label}
         </ListItemText>
       </ListItemButton>
+      <Button
+        color={'error'}
+        onClick={onClick} >
+        <Delete color="inherit"/>
+      </Button>
+    </div>
   )
 }

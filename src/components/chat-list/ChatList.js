@@ -1,40 +1,34 @@
-import React, {useState} from "react"
+import React from "react"
 import {ChatItem} from './chat-item'
-import {List} from "@mui/material"
-import {CHATS} from "../../mocks/chats";
+import {Button, List} from "@mui/material"
 
-export const ChatList = () => {
-  const [selectedIndex, setSelectedIndex] = useState(1)
-
-  const chats = [
-    {id: '1', label: 'chat 1'},
-    {id: '2', label: 'chat 2'},
-    ...CHATS
-  ]
-
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index)
-  }
-
+export const ChatList = ({chats, onDeleteChat, onAddChat}) => {
   return (
-    <List
-      component="nav"
-      aria-label="main mailbox folders"
-      sx={{width: '100%', height: '100%', bgcolor: 'rgb(5, 30, 52)'}}
-    >
-      {
-        chats.map(({id, label}) => {
-          return (
-            <ChatItem
-              key={id}
-              selected={selectedIndex === id}
-              onClick={(event) => handleListItemClick(event, id)}
-              id={id}
-              title={label}
-            />
+    <div style={{width: '100%', height: '100%', background: 'rgb(5, 30, 52)'}}>
+      <List
+        component="nav"
+        aria-label="main mailbox folders"
+      >
+        {
+          chats.map((chat) =>
+            (
+              <ChatItem
+                key={chat.id}
+                onClick={() => onDeleteChat(chat.id)}
+                {...chat}
+              />
+            )
           )
-        })
-      }
-    </List>
+        }
+      </List>
+
+      <Button
+        color={'success'}
+        fullWidth
+        onClick={() => {
+          onAddChat()
+        }}
+      >Добавить чат</Button>
+    </div>
   )
 }

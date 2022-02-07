@@ -1,11 +1,8 @@
 import propTypes from 'prop-types'
 import {Message} from './message'
 import {List} from "@mui/material"
-import {useParams} from "react-router-dom";
 
 export const MessageList = props => {
-  console.log('useParams', useParams())
-
   return (
     <List
       sx={{
@@ -14,14 +11,13 @@ export const MessageList = props => {
       }}
     >
         {
-          props.messageList.map(message => {
-            return (
+          props.messageList.map(message =>
+            (
               <Message
                 key={message.id}
-                message={message}
+                {...message}
               />
-            )
-          })
+            ))
         }
     </List>
   )

@@ -1,33 +1,42 @@
 import {Box, Container} from "@mui/material";
 import {MessageList} from "../../components";
-import {NewMessage} from "../../components/new-message";
-import {useEffect, useState} from "react";
+import {NewMessage} from "../../components/message-list/new-message";
+import {useEffect} from "react";
 import {nanoid} from "nanoid";
+import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {getChatMessagesById} from "../../store/messages/selectors";
+import {addMessage} from "../../store/messages";
 
-const messageListInit = {
-  id: '1',
-  author: 'user',
-  text: 'test'
-}
+// const messageListInit = {
+//   id: '1',
+//   author: 'user',
+//   text: 'test'
+// }
 
 export const Messages = () => {
-  const [messageList, setMessageList] = useState([messageListInit])
+  const { chatId } = useParams()
+  const dispatch = useDispatch()
+  const messageList = useSelector(getChatMessagesById(chatId));
+
+  console.log('useSelector', useSelector(getChatMessagesById(chatId)))
 
   const sendMessage = (author, text) => {
-    console.log('sendMessage', text)
-    const newMessageList = [...messageList]
     const newMessage = {
       id: nanoid(),
       author,
       text
     }
 
-    newMessageList.push(newMessage)
-    setMessageList(newMessageList)
+    dispatch(addMessage(newMessage, chatId))
+  }
+
+  const onSendMessage = value => {
+    sendMessage('user', value)
   }
 
   useEffect(() => {
-    if (messageList.length === 0) {
+    if (!messageList || messageList.length === 0) {
       return
     }
 
@@ -45,6 +54,8 @@ export const Messages = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messageList])
 
+  console.log('messageListqweqeqe', messageList)
+
   return (
     <>
       <Box
@@ -59,6 +70,7 @@ export const Messages = () => {
             flexGrow: 0
           }}
         >
+          messageList <pre>{messageList}</pre>
           <MessageList messageList={messageList} />
         </Container>
         <Box
@@ -72,7 +84,7 @@ export const Messages = () => {
                 : theme.palette.grey[800],
           }}
         >
-          <NewMessage onSend={sendMessage} />
+          <NewMessage onSend={onSendMessage} />
         </Box>
       </Box>
     </>

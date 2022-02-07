@@ -1,9 +1,10 @@
 import React from "react";
+// import propTypes from "prop-types";
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import {makeStyles} from "@mui/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   primary: {
     color: '#fff'
   }
@@ -11,15 +12,19 @@ const useStyles = makeStyles(theme => ({
 
 export const Message = props => {
   const classes = useStyles()
-  const {author, text} = props.message
 
   return (
     <ListItem>
       <ListItemText
         className={classes.primary}
-        primary={author}
-        secondary={text}
+        primary={props.author}
+        secondary={props.text}
       />
     </ListItem>
   )
 }
+
+// Message.propTypes = {
+//   text: propTypes.string,
+//   author: propTypes.string
+// };
