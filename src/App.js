@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import {Layout} from "./components/Layout";
+import {Layout} from "./layouts";
 import { Profile } from "./routes/Profile";
 import { Chat } from "./routes/Chat";
 import { NotFound } from "./routes/NotFound";
 import {Home} from "./routes/Home";
-import {Messages} from "./routes/Messages";
+import {Messages} from "./routes/Message";
 
 function App() {
   return (

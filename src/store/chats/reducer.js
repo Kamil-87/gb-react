@@ -4,7 +4,7 @@ const initialState = {
   chats: []
 }
 
-export const chatReducer = (state = initialState, action) => {
+export const chatsReducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_CHATS: {
       return {

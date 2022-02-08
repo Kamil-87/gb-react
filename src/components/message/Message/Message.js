@@ -1,7 +1,6 @@
 import React from "react";
-// import propTypes from "prop-types";
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
+import propTypes from "prop-types";
+import { ListItem, ListItemText } from '@mui/material';
 import {makeStyles} from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
@@ -24,7 +23,7 @@ export const Message = props => {
   )
 }
 
-// Message.propTypes = {
-//   text: propTypes.string,
-//   author: propTypes.string
-// };
+Message.propTypes = {
+  text: propTypes.string,
+  author: propTypes.string
+};

@@ -1,9 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-import {ListItemButton, ListItemText} from "@mui/material"
+import {ListItemButton, ListItemText, Button} from "@mui/material"
 import {Delete} from "@mui/icons-material"
-import Button from "@mui/material/Button"
 
 export const ChatItem = ({onClick, id, label}) => {
   return (

@@ -1,5 +1,4 @@
-
-import {Navbar} from "../Navbar";
+import {TheNavbar} from "../components/TheNavbar";
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 
 const navMenu = [
@@ -20,11 +19,10 @@ const navMenu = [
   }
 ];
 
-
 export const Layout = ({children}) => {
   return (
     <>
-        <Navbar
+        <TheNavbar
           menu={navMenu}
         />
 

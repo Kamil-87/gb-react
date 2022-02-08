@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export const NewMessage = props => {
+export const MessageInput = props => {
   const classes = useStyles()
   const [value, setValue] = useState('')
 
@@ -65,11 +65,11 @@ export const NewMessage = props => {
   )
 }
 
-NewMessage.defaultProps = {
+MessageInput.defaultProps = {
   placeholder: 'Введите сообщение...'
 }
 
-NewMessage.propTypes = {
+MessageInput.propTypes = {
   onSend: propTypes.func,
   placeholder: propTypes.string
 }

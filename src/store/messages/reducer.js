@@ -4,7 +4,7 @@ const initialState = {
   messages: {}
 }
 
-export const messageReducer = (state = initialState, action) => {
+export const messagesReducer = (state = initialState, action) => {
 
   switch(action.type) {
     case ADD_MESSAGE: {

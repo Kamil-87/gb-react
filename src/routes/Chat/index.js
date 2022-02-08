@@ -1,10 +1,10 @@
 
 import {Box, Grid, Divider} from "@mui/material";
-import {ChatList} from '../../components'
-import {Messages} from "../Messages";
+import {ChatList} from '../../components/'
+import {Messages} from "../Message";
 import {useDispatch, useSelector} from "react-redux";
-import {getChatList} from "../../store/chat/selectors";
-import {removeChat, addChat, setChats} from "../../store/chat";
+import {getChatList} from "../../store/chats/selectors";
+import {removeChat, addChat, setChats} from "../../store/chats";
 import {nanoid} from "nanoid";
 import {CHATS} from "../../mocks/chats";
 import {useEffect} from "react";

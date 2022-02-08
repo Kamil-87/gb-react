@@ -1,6 +1,6 @@
 import {Box, Container} from "@mui/material";
-import {MessageList} from "../../components";
-import {NewMessage} from "../../components/message-list/new-message";
+import {MessageList} from "../../components/message/MessageList/MessageList";
+import {MessageInput} from "../../components/message/MessageInput/MessageInput";
 import {useEffect} from "react";
 import {nanoid} from "nanoid";
 import {useParams} from "react-router-dom";
@@ -8,18 +8,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {getChatMessagesById} from "../../store/messages/selectors";
 import {addMessage} from "../../store/messages";
 
-// const messageListInit = {
-//   id: '1',
-//   author: 'user',
-//   text: 'test'
-// }
-
 export const Messages = () => {
   const { chatId } = useParams()
   const dispatch = useDispatch()
   const messageList = useSelector(getChatMessagesById(chatId));
-
-  console.log('useSelector', useSelector(getChatMessagesById(chatId)))
 
   const sendMessage = (author, text) => {
     const newMessage = {
@@ -54,8 +46,6 @@ export const Messages = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messageList])
 
-  console.log('messageListqweqeqe', messageList)
-
   return (
     <>
       <Box
@@ -70,7 +60,6 @@ export const Messages = () => {
             flexGrow: 0
           }}
         >
-          messageList <pre>{messageList}</pre>
           <MessageList messageList={messageList} />
         </Container>
         <Box
@@ -84,7 +73,7 @@ export const Messages = () => {
                 : theme.palette.grey[800],
           }}
         >
-          <NewMessage onSend={onSendMessage} />
+          <MessageInput onSend={onSendMessage} />
         </Box>
       </Box>
     </>

@@ -1,5 +1,5 @@
 import React from "react"
-import {ChatItem} from './chat-item'
+import { ChatItem } from '../ChatItem/ChatItem'
 import {Button, List} from "@mui/material"
 
 export const ChatList = ({chats, onDeleteChat, onAddChat}) => {
@@ -9,16 +9,12 @@ export const ChatList = ({chats, onDeleteChat, onAddChat}) => {
         component="nav"
         aria-label="main mailbox folders"
       >
-        {
-          chats.map((chat) =>
-            (
-              <ChatItem
+        {chats.map((chat) =>
+            (<ChatItem
                 key={chat.id}
                 onClick={() => onDeleteChat(chat.id)}
                 {...chat}
-              />
-            )
-          )
+              />))
         }
       </List>
 

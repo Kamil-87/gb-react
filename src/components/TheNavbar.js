@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { Link } from 'react-router-dom'
 
-export const Navbar = (props) => {
+export const TheNavbar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {

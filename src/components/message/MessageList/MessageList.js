@@ -1,5 +1,5 @@
 import propTypes from 'prop-types'
-import {Message} from './message'
+import {Message} from '../Message/Message'
 import {List} from "@mui/material"
 
 export const MessageList = props => {
@@ -10,15 +10,11 @@ export const MessageList = props => {
         maxWidth: 360
       }}
     >
-        {
-          props.messageList.map(message =>
-            (
-              <Message
-                key={message.id}
-                {...message}
-              />
-            ))
-        }
+      {props.messageList.map(message =>
+        (<Message
+          key={message.id}
+          {...message}
+        />))}
     </List>
   )
 }

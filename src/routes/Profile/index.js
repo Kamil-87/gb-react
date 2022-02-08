@@ -6,10 +6,7 @@ import { toggleShowProfileAction } from '../../store/profile'
 export const Profile = () => {
   const dispatch = useDispatch()
   const isToggle = useSelector(state => state.isToggle)
-
-  const onChangeStatus = () => {
-    dispatch(toggleShowProfileAction)
-  }
+  const onChangeStatus = () => { dispatch(toggleShowProfileAction) }
 
   return (
     <Container sx={{pt: 4}}>
@@ -23,8 +20,6 @@ export const Profile = () => {
         />
         <label htmlFor="viewProfile">Показать профиль</label>
       </div>
-
-
 
       <div style={{display: 'flex', alignItems: 'center'}}>
         <input
